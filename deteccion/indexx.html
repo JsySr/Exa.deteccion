@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingrese PIN</title>
+</head>
+<body>
+    <h1>Ingrese su PIN</h1>
+    <form id="pinForm">
+        <label for="pinInput">PIN:</label>
+        <input type="password" id="pinInput" required>
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <p id="mensaje"></p>
+
+    <script>
+        const PIN_AUTORIZADO = "1234";
+
+        document.getElementById("pinForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const pinIngresado = document.getElementById("pinInput").value.trim();
+            if (validarPIN(pinIngresado)) {
+                document.getElementById("mensaje").textContent = "PIN válido. Cargando el otro script...";
+                setTimeout(function() {
+                    cargarOtroScript();
+                }, 2000); // Simulando un breve retraso antes de cargar el otro script
+            } else {
+                document.getElementById("mensaje").textContent = "PIN incorrecto. Inténtelo de nuevo.";
+            }
+        });
+
+        function validarPIN(pin) {
+            return pin === PIN_AUTORIZADO;
+        }
+
+        function cargarOtroScript() {
+            window.location.href = 'index.html'; 
+        }
+    </script>
+</body>
+</html>
